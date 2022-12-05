@@ -1,1 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Rotation </title>
+<script>
+function loadArr() {
+      localStorage.setItem('arr', JSON.stringify(['red', 'yellow', 'green', 'orange']));
+    }
+</script>
+<style>
+body{font-size:30px;
+font-family: "Arial", "sans-serif";}
+
+table {
+margin-top:50px;
+background-color:white;
+border: 1px solid black;
+margin-left:auto; 
+margin-right:auto;
+width:50%
+}
+
+td {
+width: 700px;
+padding: 5px;
+border: 1px solid black;
+}
+
+
+.spanrows2 {
+text-align: center;    
+width: 600px;
+}
+
+.squareDivs {
+width:150px;
+height:200px;
+background-color:#FFA500;
+margin: 10px;
+border-radius: 10px; 
+display: inline-block;
+}
+
+.squareDivs1 {
+width:150px;
+height:200px;
+background-color:#FF0000;
+ margin: 10px;
+border-radius: 10px; 
+display: inline-block;
+}
+
+.squareDivs2 {
+width:150px;
+height:200px;
+background-color:#FFFF00;
+ margin: 10px;
+border-radius: 10px; 
+display: inline-block;
+}
+
+.squareDivs3 {
+width:150px;
+height:200px;
+background-color:#008000;
+ margin: 10px;
+border-radius: 10px; 
+display: inline-block;
+}
+
+
+
+.squareTxt {
+line-height: 100px;
+vertical-align: middle;    
+}
+
+
+</style>
+</head>
+<body onload="loadArr()">
+<script>
+function myFunction(clockwise) {
+      //let arr = ['red', 'yellow', 'green', 'orange'];
+      
+      
+      clockwise ? localStorage.setItem('arr', JSON.stringify(rotateRight(JSON.parse(localStorage.getItem('arr'))))) : localStorage.setItem('arr', JSON.stringify(rotateLeft(JSON.parse(localStorage.getItem('arr')))))
+
+      let arr = JSON.parse(localStorage.getItem('arr'));
+
+
+      //clockwise ? arr = rotateRight(arr) : arr = rotateLeft(arr)
+
+      document.getElementById("first").style.backgroundColor = arr[0];
+      document.getElementById("second").style.backgroundColor = arr[1];
+      document.getElementById("third").style.backgroundColor = arr[2];
+      document.getElementById("fourth").style.backgroundColor = arr[3];
+    }
+
+     function rotateRight(arr) {
+
+      for (let i = 0; i < 1; i++) {
+        arr.unshift(arr.pop());
+      }
+      return arr;
+    }
+
+    function rotateLeft(a, d) {
+      var arr = [];
+      for (var i = 0; i < a.length; i++) {
+        arr.push(a[i]);
+      };
+      for (var j = 1; j <= 1; j++) {
+        arr.shift(arr.push(arr[0]));
+      }
+      return arr;
+    }
+
+	
+</script>
+<table>
+<tr>
+     <td class='spanrows2'>
+        <div class='squareDivs1' id="first"><span class='squareTxt'></span></div>
+        <div class='squareDivs2' id="second"><span class='squareTxt'></span></div>
+        <br>
+         <button type="button" id="btn1" onclick="myFunction(false)">Anti-Clockwise</button> 
+         <button type="button" id="btn2" onclick="myFunction(true)">Clockwise</button> 
+         <br>
+        <div class='squareDivs' id="fourth"><span class='squareTxt'></span></div>
+        <div class='squareDivs3' id="third"><span class='squareTxt'></span></div>
+   </td>
+</tr>
+</table>
+</body>
+</html>
 
